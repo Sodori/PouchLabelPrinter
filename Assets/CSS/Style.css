@@ -1,8 +1,81 @@
 body {
     margin: 0px;
-    background-color: #FEFBF6;
+    background-color: black;
+    /* background-color: #FEFBF6; */
   }
   
+/* Main content stuff */
+
+@media print {
+  .nav {
+    opacity: 0;
+    display: none;
+  }
+  .pdf {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+  }
+}
+
+/* Your regular styles for the "pdf" class */
+.pdf {
+  background-color: aqua;
+  width: 210mm;
+  height: 297mm;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+.SK {
+  opacity: 50%;
+  margin: 0;
+  width: 27.5mm;
+}
+
+.R {
+  opacity: 50%;
+  margin: 0;
+  width: 22.5mm;
+}
+
+.A.SK{
+  background-color: red;
+  position: relative;
+  left: 17.5mm;
+}
+.A.R{
+  background-color: blue;
+  position: relative;
+  left: 27.5mm;
+}
+.B.SK{
+  background-color: green;
+  position: relative;
+  left: 37.5mm;
+}
+.B.R{
+  background-color: yellow;
+  position: relative;
+  left: 47.5mm;
+}
+.C.SK{
+  background-color: pink;
+  position: relative;
+  left: 57.5mm;
+}
+.C.R{
+  background-color: brown;
+  position: relative;
+  right: -67.5mm;
+  width: 15mm;
+}
+
+
+
+
   /* Nav stuff */
   .nav {
     display: flex;
