@@ -1,7 +1,98 @@
-#scanner-container {
-    background-color: blue;
-}
+body {
+    margin: 0px;
+    background-color: #FEFBF6;
+  }
+  
+  /* Nav stuff */
+  .nav {
+    display: flex;
+    align-items: stretch;
+    max-height: 10vh;
+    border-bottom: #57747e 2vh solid;
+  }
+  
+  .destinations {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+  
+  ul {
+    padding: 0%;
+  }
+  
+  .nLogo {
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #DGlogo {
+    max-width: 50%;
+  }
 
-#result {
-    background-color: brown;
-}
+  /* Imported Navbar */
+.menu {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .menu * {
+    box-sizing: border-box;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    overflow: hidden;
+  }
+  .menu a {
+    padding: 0.3em 0;
+    color: #212121;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin: 0;
+    text-decoration: none;
+  }
+  .menu a:before,
+  .menu a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu a:before {
+    bottom: 100%;
+    display: block;
+    height: 3px;
+    width: 100%;
+    content: "";
+    background-color: #57747e;
+  }
+  .menu a:after {
+    padding: 0.3em 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    content: attr(data-hover);
+    color: #212121;
+    white-space: nowrap;
+  }
+  .menu li:hover a,
+  .menu .current a {
+    transform: translateY(100%);
+  }
