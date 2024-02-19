@@ -27,17 +27,17 @@ body {
 
 /* Fixing up each page */
 .Pages {
-  background-color: aqua;
+  /* background-color: aqua; */
   width: 210mm;
-  height: 295mm;
-  /* padding-bottom: 4.6mm; */
+  height: 297mm;
+  /* margin-bottom: 1mm; */
+  page-break-after: always;
   display: flex;
   flex-flow: column wrap;
   place-content: center space-evenly;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  align-content: stretch;
+  justify-content: flex-end;
 }
 
 /* Setting up labels properly */
@@ -47,6 +47,8 @@ body {
   /* width: 70mm; */
   height: 16.95mm;
   width: calc(100% / 3); /* Set the initial width to one-third of the container */
+  position: relative;
+  bottom: 5.5mm;
   display: flex;
   justify-content: center;
   align-items: center;

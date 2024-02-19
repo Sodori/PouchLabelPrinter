@@ -1,25 +1,26 @@
 // Function to create and append 51 div elements with the class 'label' for each page
-function addLabels(pages, _KokID, _Rstart) {
+function addLabels(pages, KokID, Rpos) {
     var labelPagesContainer = document.querySelector('.LabelPages');
+    var Rcycle = [1, 1, 3, 3, 5, 5];
 
     // Clear existing pages
     while (labelPagesContainer.firstChild) {
         labelPagesContainer.removeChild(labelPagesContainer.firstChild);
     }
 
-    if (_KokID == "") {
-        _KokID = "3630";
+    if (KokID == "") {
+        KokID = "1";
     }
 
     console.log("Starting addLabels script:");
     console.log("Pages: ", pages);
-    console.log("KokId: ", _KokID);
-    console.log("R-position: ", _Rstart);
+    console.log("KokId: ", KokID);
+    console.log("R-position: ", Rpos);
 
     for (var page = 1; page <= pages; page++) {
         var pagesContainer = document.createElement('div');
         pagesContainer.className = 'Pages';
-        pagesContainer.style.backgroundImage = "url('assets/media/background.jpg')";
+        // pagesContainer.style.backgroundImage = "url('assets/media/background.jpg')";
         pagesContainer.style.backgroundSize = 'cover';
         pagesContainer.style.backgroundRepeat = 'no-repeat';
 
@@ -33,11 +34,20 @@ function addLabels(pages, _KokID, _Rstart) {
 
             var skDiv = document.createElement('div');
             skDiv.className = "SK";
-            skDiv.innerText = '-SK-';
+            skDiv.innerText = '-SK- ' + KokID;
 
             var rDiv = document.createElement('div');
             rDiv.className = "R";
-            rDiv.innerText = '-R-';
+            rDiv.innerText = '-R- ' + Rcycle[Rpos];
+            
+            // Add one to Rpos
+            Rpos++;
+
+            // Check if Rpos is five, then add one to KokID and reset Rpos to zero
+            if (Rpos === 6) {
+            KokID++;
+            Rpos = 0;
+            }
 
             // Append the nested divs to the SKR div
             skrDiv.appendChild(skDiv);
@@ -50,7 +60,7 @@ function addLabels(pages, _KokID, _Rstart) {
 
             // Generate a random background color
             var randomColor = getRandomColor(0.25);
-            skrDiv.style.backgroundColor = randomColor;
+            labelDiv.style.backgroundColor = randomColor;
 
             pagesContainer.appendChild(labelDiv);
         }
@@ -106,7 +116,6 @@ return 'defaultRadioValue';
     // Call the function with the desired number of pages (change the parameter value as needed)
     // addLabels(2,3630,0);
     addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
-
 
     var printButton = document.getElementById('Print');
 
