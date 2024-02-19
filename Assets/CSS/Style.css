@@ -1,7 +1,7 @@
 body {
     margin: 0px;
-    background-color: black;
-    /* background-color: #FEFBF6; */
+    /* background-color: black; */
+    background-color: #FEFBF6;
   }
   
 /* Main content stuff */
@@ -11,110 +11,97 @@ body {
     opacity: 0;
     display: none;
   }
-  .pdf {
+  .LabelPages {
     position: absolute;
     top: 0;
     left: 0;
-
+    width: 210mm;
+    height: 297mm;
   }
 }
 
-/* Your regular styles for the "pdf" class */
-.pdf {
+/* Fixing up each page */
+.Pages {
   background-color: aqua;
   width: 210mm;
-  height: 297mm;
+  height: 295mm;
+  /* padding-bottom: 4.6mm; */
+  display: flex;
+  flex-flow: column wrap;
+  place-content: center space-evenly;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+}
+
+/* Setting up labels properly */
+.label {
+  opacity: 25%;
+  /* width: 70mm; */
+  height: 16.95mm;
+  width: calc(100% / 3); /* Set the initial width to one-third of the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* For the Autoclav */
+.SKR {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sk {
+  text-align: :left;
+}
+
+.r {
+  text-align: right;
+}
+
+/* Nav stuff */
+.nav {
   display: flex;
   align-items: stretch;
-  flex-wrap: nowrap;
+  max-height: 10vh;
+  border-bottom: #57747e 2vh solid;
 }
 
-.SK {
-  opacity: 50%;
-  margin: 0;
-  width: 27.5mm;
+.destinations {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
-.R {
-  opacity: 50%;
-  margin: 0;
-  width: 22.5mm;
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
-.A.SK{
-  background-color: red;
-  position: relative;
-  left: 17.5mm;
-}
-.A.R{
-  background-color: blue;
-  position: relative;
-  left: 27.5mm;
-}
-.B.SK{
-  background-color: green;
-  position: relative;
-  left: 37.5mm;
-}
-.B.R{
-  background-color: yellow;
-  position: relative;
-  left: 47.5mm;
-}
-.C.SK{
-  background-color: pink;
-  position: relative;
-  left: 57.5mm;
-}
-.C.R{
-  background-color: brown;
-  position: relative;
-  right: -67.5mm;
-  width: 15mm;
+ul {
+  padding: 0%;
 }
 
+.nLogo {
+  padding: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
-
-  /* Nav stuff */
-  .nav {
-    display: flex;
-    align-items: stretch;
-    max-height: 10vh;
-    border-bottom: #57747e 2vh solid;
-  }
-  
-  .destinations {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    align-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-  }
-  
-  ul {
-    padding: 0%;
-  }
-  
-  .nLogo {
-    padding: 1%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  #DGlogo {
-    max-width: 50%;
-  }
+#DGlogo {
+  max-width: 50%;
+}
 
   /* Imported Navbar */
 .menu {
