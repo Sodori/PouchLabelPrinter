@@ -11,6 +11,11 @@ body {
     opacity: 0;
     display: none;
   }
+
+  .parameters {
+    opacity: 0;
+    display: none;
+  }
   .LabelPages {
     position: absolute;
     top: 0;
@@ -37,7 +42,8 @@ body {
 
 /* Setting up labels properly */
 .label {
-  opacity: 25%;
+  back
+  opacity: .25;
   /* width: 70mm; */
   height: 16.95mm;
   width: calc(100% / 3); /* Set the initial width to one-third of the container */
