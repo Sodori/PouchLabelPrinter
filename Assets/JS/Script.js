@@ -1,165 +1,127 @@
-// Function to create and append 51 div elements with the class 'label' for each page
-function addLabels(pages, KokID, Rpos) {
-    var labelPagesContainer = document.querySelector('.LabelPages');
+document.addEventListener('DOMContentLoaded', function() {
+    // Trigger initial label addition
+    UpdatePreview(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+
+    // Print button event listener
+    document.getElementById('Print').addEventListener('click', function() {
+        PrintLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+        window.print();
+    });
+
+    // Advanced settings toggle
+    document.getElementById('advancedSettingsToggle').addEventListener('click', function() {
+        toggleAdvancedSettings(document.getElementById('advancedSettingsContent'));
+    });
+
+    // Attach change event listeners to inputs for real-time updates
+    attachInputEventListeners();
+});
+
+function toggleAdvancedSettings(content) {
+    var isOpen = content.style.display !== 'none';
+    content.style.display = isOpen ? 'none' : 'block';
+    content.style.maxHeight = isOpen ? null : content.scrollHeight + "px";
+}
+
+function attachInputEventListeners() {
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', function() {
+            // Trigger label addition upon any input change
+            UpdatePreview(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+        });
+    });
+}
+
+function UpdatePreview(pages, KokID, Rpos) {
+    var labelPagesContainer = document.querySelector('.preview');
+    KokID = KokID || "6969"; // Default KokID to "1" if empty
     var Rcycle = [1, 1, 3, 3, 5, 5];
+    Rpos = parseInt(Rpos) || 0; // Ensure Rpos is an integer
+    
+    // Clear existing labels
+    labelPagesContainer.innerHTML = '';
 
-    // Clear existing pages
-    while (labelPagesContainer.firstChild) {
-        labelPagesContainer.removeChild(labelPagesContainer.firstChild);
-    }
-
-    if (KokID == "") {
-        KokID = "1";
-    }
-
-    console.log("Starting addLabels script:");
-    console.log("Pages: ", pages);
-    console.log("KokId: ", KokID);
-    console.log("R-position: ", Rpos);
-
-    for (var page = 1; page <= pages; page++) {
-        var pagesContainer = document.createElement('div');
-        pagesContainer.className = 'Pages';
-        // pagesContainer.style.backgroundImage = "url('assets/media/background.jpg')";
-        pagesContainer.style.backgroundSize = 'cover';
-        pagesContainer.style.backgroundRepeat = 'no-repeat';
-
-        for (var i = 1; i <= 51; i++) {
-            var labelDiv = document.createElement('div');
-            labelDiv.className = 'label';
-
-            // Create the SKR div with two nested divs
-            var skrDiv = document.createElement('div');
-            skrDiv.className = 'SKR';
-
-            var skDiv = document.createElement('div');
-            skDiv.className = "SK";
-            skDiv.innerText = '-SK- ' + KokID;
-
-            var rDiv = document.createElement('div');
-            rDiv.className = "R";
-            rDiv.innerText = '-R- ' + Rcycle[Rpos];
-            
-            // Add one to Rpos
-            Rpos++;
-
-            // Check if Rpos is five, then add one to KokID and reset Rpos to zero
-            if (Rpos === 6) {
-            KokID++;
-            Rpos = 0;
+    for (let page = 1; page <= pages; page++) {
+        let pagesContainer = createPageContainer();
+        for (let i = 1; i <= 51; i++) {
+            Rpos = createLabel(pagesContainer, KokID, Rcycle, Rpos);
+            if (Rpos >= Rcycle.length) {
+                KokID++; // Increment KokID when Rpos exceeds Rcycle length
+                Rpos = 0; // Reset Rpos
             }
-
-            // Append the nested divs to the SKR div
-            skrDiv.appendChild(skDiv);
-            skrDiv.appendChild(rDiv);
-
-            // Append the SKR div to the label div
-            labelDiv.appendChild(skrDiv);
-
-            // labelDiv.innerText = 'Page ' + page + ', Label ' + i; // Optional: Add text content
-
-            // Generate a random background color
-            var randomColor = getRandomColor(0.25);
-            labelDiv.style.backgroundColor = randomColor;
-
-            pagesContainer.appendChild(labelDiv);
         }
-
         labelPagesContainer.appendChild(pagesContainer);
     }
 }
 
-  
-// Function to generate a random color
-function getRandomColor(alpha) {
-    if (alpha === undefined) {
-        alpha = 1; // Default to fully opaque if alpha is not provided
-    }
+function PrintLabels(pages, KokID, Rpos) {
+    var labelPagesContainer = document.querySelector('.LabelPages');
+    KokID = KokID || "6969"; // Default KokID to "1" if empty
+    var Rcycle = [1, 1, 3, 3, 5, 5];
+    Rpos = parseInt(Rpos) || 0; // Ensure Rpos is an integer
     
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+    // Clear existing labels
+    labelPagesContainer.innerHTML = '';
+
+    for (let page = 1; page <= pages; page++) {
+        let pagesContainer = createPageContainer();
+        for (let i = 1; i <= 51; i++) {
+            Rpos = createLabel(pagesContainer, KokID, Rcycle, Rpos);
+            if (Rpos >= Rcycle.length) {
+                KokID++; // Increment KokID when Rpos exceeds Rcycle length
+                Rpos = 0; // Reset Rpos
+            }
+        }
+        labelPagesContainer.appendChild(pagesContainer);
     }
+}
 
-    // Convert hex to rgba
-    var hexColor = parseInt(color.substring(1), 16);
-    var r = (hexColor >> 16) & 255;
-    var g = (hexColor >> 8) & 255;
-    var b = hexColor & 255;
+function createPageContainer() {
+    var pagesContainer = document.createElement('div');
+    pagesContainer.className = 'Pages';
+    pagesContainer.style.backgroundSize = 'cover';
+    pagesContainer.style.backgroundRepeat = 'no-repeat';
+    return pagesContainer;
+}
 
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+function createLabel(container, KokID, Rcycle, Rpos) {
+    var labelDiv = document.createElement('div');
+    labelDiv.className = 'label';
+    labelDiv.style.backgroundColor = getRandomColor(0.25);
+
+    // Check the checked status of the SK and R checkboxes
+    var skCheckbox = document.getElementById('skCheckbox').checked;
+    var rCheckbox = document.getElementById('rCheckbox').checked;
+
+    var skDiv = document.createElement('div');
+    skDiv.className = "SK";
+    skDiv.style.textAlign = 'left';
+    // Conditionally set the SK text based on the checkbox
+    skDiv.innerText = skCheckbox ? `-SK- ${KokID}` : `⠀⠀⠀⠀ ${KokID}`;
+
+    var rDiv = document.createElement('div');
+    rDiv.className = "R";
+    rDiv.style.textAlign = 'right'; // This line should correctly target rDiv
+    // Conditionally set the R text based on the checkbox
+    rDiv.innerText = rCheckbox ? `-R- ${Rcycle[Rpos]}` : `⠀⠀⠀ ${Rcycle[Rpos]}`;
+
+    labelDiv.appendChild(skDiv);
+    labelDiv.appendChild(rDiv);
+    container.appendChild(labelDiv);
+
+    return Rpos + 1; // Return the next Rpos
+}
+
+
+function getRandomColor(alpha = 1) {
+    return `rgba(${[...Array(3)].map(() => Math.floor(Math.random() * 256)).join(',')},${alpha})`;
 }
 
 function getInputValue(inputId) {
-// Get the value of the input element with the specified ID
-var value = document.getElementById(inputId).value
-console.log(value)
-return document.getElementById(inputId).value;
+    return document.getElementById(inputId).value.trim();
 }
 
 function getSelectedRadioValue(radioName) {
-// Get the value of the selected radio button within the specified radio group
-var radioButtons = document.getElementsByName(radioName);
-for (var i = 0; i < radioButtons.length; i++) {
-    if (radioButtons[i].checked) {
-    return radioButtons[i].id;
-    }
+    var selectedRadio = document.querySelector(`input[name="${radioName}"]:checked`);
+    return selectedRadio ? selectedRadio.value : '0'; // Adjusted to return value instead of id
 }
-// Return a default value if no radio button is checked
-return 'defaultRadioValue';
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
-
-var printButton = document.getElementById('Print');
-
-// Event listener for the "Print" button
-    printButton.addEventListener('click', function() {
-        // Call the function with the desired number of pages
-        addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
-
-        // Perform printing action
-        window.print();
-    });
-
-    
-});
-  
-document.addEventListener('DOMContentLoaded', function() {
-    var advancedSettingsToggle = document.getElementById('advancedSettingsToggle');
-    var advancedSettingsContent = document.getElementById('advancedSettingsContent');
-
-    advancedSettingsToggle.addEventListener('click', function() {
-        var isOpen = advancedSettingsContent.style.display !== 'none';
-        
-        if (isOpen) {
-            // Close the advanced settings
-            advancedSettingsContent.style.display = 'none';
-            advancedSettingsContent.style.maxHeight = null;
-        } else {
-            // Open the advanced settings
-            advancedSettingsContent.style.display = 'block';
-            advancedSettingsContent.style.maxHeight = advancedSettingsContent.scrollHeight + "px";
-        }
-    });
-
-    // Select all input elements
-    const inputs = document.querySelectorAll('input');
-
-    // Function to call when an input changes
-    const handleInputChange = (event) => {
-        console.log('Input changed:', event.target.value);
-        // Add your handling logic here
-    };
-
-    // Attach the event listener to each input
-    inputs.forEach(input => {
-        input.addEventListener('input', handleInputChange);
-    });
-
-
-});

@@ -23,17 +23,20 @@
     </nav>
 
     <div class="parameters">
-        <div id="SKR">
-            <div id="checks">
+        <div class="settings" id="SKR">
+            <div class="checks">
                 <div>
-                    <input type="checkbox" id="skCheckbox" name="sk" value="SK">
+                    <input type="checkbox" id="skCheckbox" name="sk" value="SK" checked>
                     <label for="skCheckbox">SK</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="rCheckbox" name="r" value="R">
+                    <input type="checkbox" id="rCheckbox" name="r" value="R" checked>
                     <label for="rCheckbox">R</label>
                 </div>
             </div>
+
+            <br>
+            <div class="inputs">
             <div>
                 <label for="KokNr">Välj KokNr: </label>
                 <input type="text" name="KokNr" id="KokId" required>
@@ -43,43 +46,49 @@
             <div>
                 <label for="pages">Välj antal sidor: </label>
                 <input type="number" name="pages" id="pages" value="1">
-            </div> 
+            </div>
+            </div>
 
             <br>
-            <button id="advancedSettingsToggle">Advanced Settings</button>
-            <div id="advancedSettingsContent" style="display:none;">
-                <div id="RSelect">
-                    <label for="RSelect">Välj vilket R-nummer du vill börja på:</label>
-                    <div class="Rid">
-                        <input type="radio" name="rButtons" id="0" checked>
-                        <label for="0">First 1</label>
-                    </div>
-                    <div class="Rid">
-                        <input type="radio" name="rButtons" id="1">
-                        <label for="1">Second 1</label>
-                    </div>
-                    <div class="Rid">
-                        <input type="radio" name="rButtons" id="2">
-                        <label for="2">First 3</label>
-                    </div>
-                    <div class="Rid">
-                        <input type="radio" name="rButtons" id="3">
-                        <label for="3">Second 3</label>
-                    </div>
-                    <div class="Rid">
-                        <input type="radio" name="rButtons" id="4">
-                        <label for="4">First 5</label>
-                    </div>
-                    <div class="Rid">
-                        <input type="radio" name="rButtons" id="5">
-                        <label for="5">Second 5</label>
+            <div class="aSettings">
+                <button id="advancedSettingsToggle">Advanced Settings</button>
+                <div id="advancedSettingsContent" style="display:none;">
+                    <div id="RSelect">
+                        <label for="RSelect">Välj vilket R-nummer du vill börja på:</label>
+                        <div class="Rid">
+                            <input type="radio" name="rButtons" id="0" checked>
+                            <label for="0">First 1</label>
+                        </div>
+                        <div class="Rid">
+                            <input type="radio" name="rButtons" id="1">
+                            <label for="1">Second 1</label>
+                        </div>
+                        <div class="Rid">
+                            <input type="radio" name="rButtons" id="2">
+                            <label for="2">First 3</label>
+                        </div>
+                        <div class="Rid">
+                            <input type="radio" name="rButtons" id="3">
+                            <label for="3">Second 3</label>
+                        </div>
+                        <div class="Rid">
+                            <input type="radio" name="rButtons" id="4">
+                            <label for="4">First 5</label>
+                        </div>
+                        <div class="Rid">
+                            <input type="radio" name="rButtons" id="5">
+                            <label for="5">Second 5</label>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <br>
-            <input type="button" id="Print" value="Print">
+            <div class="print">
+                <input type="button" id="Print" value="Print">
+            </div>
         </div>
+        <div class="preview"></div>
     </div>
 
     <div class="LabelPages">

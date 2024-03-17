@@ -6,6 +6,8 @@ body {
   
 /* Main content stuff */
 
+
+
 @media print {
   .nav {
     opacity: 0;
@@ -16,24 +18,25 @@ body {
     opacity: 0;
     display: none;
   }
+
   .LabelPages {
     position: absolute;
     top: 0;
     left: 0;
     width: 210mm;
     height: 297mm;
+    background-image: none !important;
+    background-color: transparent !important;
   }
 }
 
 @page { margin: 0px;}
 
 /* Fixing up each page */
-.Pages {
-  /* background-color: aqua; */
+.LabelPages .Pages {
+  background-color: aqua;
   width: 210mm;
   height: 297mm;
-  /* margin-top: 2.75mm; */
-  /* padding-bottom: 4.6mm; */
   page-break-after: always;
   display: flex;
   flex-flow: column wrap;
@@ -44,33 +47,13 @@ body {
 }
 
 /* Setting up labels properly */
-.label {
-  back
-  opacity: .25;
+.LabelPages .label {
   height: 16.93mm;
-  width: calc(100% / 3); /* Set the initial width to one-third of the container */
+  width: calc(100% / 3);
   position: relative;
-  /* bottom: 5.5mm; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* For the Autoclav */
-.SKR {
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.sk {
-  text-align: :left;
-}
-
-.r {
-  text-align: right;
 }
 
 #advancessettingscontent {
@@ -78,30 +61,51 @@ body {
   display: flex;
 }
 
-#SKR {
-  scale: 150%;
-  width: calc(100%/6);
+.parameters {
+  background-color: yellow;
+  height: max-content;
+  display: flex;
+  align-items: flex-start;
+}
+
+.preview {
+  max-height: 75vh;
+  background-color: violet;
+  page-break-after: always;
+  display: flex;
+  flex-flow: column wrap;
+  place-content: center space-evenly;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.settings {
+  width: 50%;
   padding: 1%;
-  margin: 6%;
+  margin: 1%;
+  padding: 2%;
   border: black solid;
   border-radius: 10%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  background-color: #FFFDD0;
 }
 
-#SKR div {
-  display: flex;
-  justify-content: center;
-}
-
-#SKR input {
-  margin-left: 5px;
-}
-
-#checks {
+.checks {
   display: flex;
   justify-content: space-evenly;
+}
+
+.inputs {
+  background-color: aqua;
+  display: flex;
+  max-width: 90%;
+}
+
+.inputs div {
+  background-color: red;
 }
 
 /* Advanced settings */
