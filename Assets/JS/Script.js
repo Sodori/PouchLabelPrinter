@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Trigger initial label addition
-    UpdatePreview(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+    addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
 
     // Print button event listener
     document.getElementById('Print').addEventListener('click', function() {
-        PrintLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+        addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
         window.print();
     });
 
@@ -27,34 +27,12 @@ function attachInputEventListeners() {
     document.querySelectorAll('input').forEach(input => {
         input.addEventListener('input', function() {
             // Trigger label addition upon any input change
-            UpdatePreview(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+            addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
         });
     });
 }
 
-function UpdatePreview(pages, KokID, Rpos) {
-    var labelPagesContainer = document.querySelector('.preview');
-    KokID = KokID || "6969"; // Default KokID to "1" if empty
-    var Rcycle = [1, 1, 3, 3, 5, 5];
-    Rpos = parseInt(Rpos) || 0; // Ensure Rpos is an integer
-    
-    // Clear existing labels
-    labelPagesContainer.innerHTML = '';
-
-    for (let page = 1; page <= pages; page++) {
-        let pagesContainer = createPageContainer();
-        for (let i = 1; i <= 51; i++) {
-            Rpos = createLabel(pagesContainer, KokID, Rcycle, Rpos);
-            if (Rpos >= Rcycle.length) {
-                KokID++; // Increment KokID when Rpos exceeds Rcycle length
-                Rpos = 0; // Reset Rpos
-            }
-        }
-        labelPagesContainer.appendChild(pagesContainer);
-    }
-}
-
-function PrintLabels(pages, KokID, Rpos) {
+function addLabels(pages, KokID, Rpos) {
     var labelPagesContainer = document.querySelector('.LabelPages');
     KokID = KokID || "6969"; // Default KokID to "1" if empty
     var Rcycle = [1, 1, 3, 3, 5, 5];
@@ -103,7 +81,7 @@ function createLabel(container, KokID, Rcycle, Rpos) {
     rDiv.className = "R";
     rDiv.style.textAlign = 'right'; // This line should correctly target rDiv
     // Conditionally set the R text based on the checkbox
-    rDiv.innerText = rCheckbox ? `-R- ${Rcycle[Rpos]}` : `⠀⠀⠀ ${Rcycle[Rpos]}`;
+    rDiv.innerText = rCheckbox ? `-R- ${Rcycle[Rpos]}` : `⠀⠀ ${Rcycle[Rpos]}`;
 
     labelDiv.appendChild(skDiv);
     labelDiv.appendChild(rDiv);
