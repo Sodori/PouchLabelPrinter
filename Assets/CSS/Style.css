@@ -25,30 +25,32 @@ body {
   }
 }
 
+@page { margin: 0px;}
+
 /* Fixing up each page */
 .Pages {
   /* background-color: aqua; */
   width: 210mm;
   height: 297mm;
-  /* margin-bottom: 1mm; */
+  /* margin-top: 2.75mm; */
+  /* padding-bottom: 4.6mm; */
   page-break-after: always;
   display: flex;
   flex-flow: column wrap;
   place-content: center space-evenly;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 /* Setting up labels properly */
 .label {
   back
   opacity: .25;
-  /* width: 70mm; */
-  height: 16.95mm;
+  height: 16.93mm;
   width: calc(100% / 3); /* Set the initial width to one-third of the container */
   position: relative;
-  bottom: 5.5mm;
+  /* bottom: 5.5mm; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +72,44 @@ body {
 .r {
   text-align: right;
 }
+
+#advancessettingscontent {
+  background-color: turquoise;
+  display: flex;
+}
+
+#SKR {
+  scale: 150%;
+  width: calc(100%/6);
+  padding: 1%;
+  margin: 6%;
+  border: black solid;
+  border-radius: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#SKR div {
+  display: flex;
+  justify-content: center;
+}
+
+#SKR input {
+  margin-left: 5px;
+}
+
+#checks {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Advanced settings */
+#advancedSettingsContent {
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
 
 /* Nav stuff */
 .nav {

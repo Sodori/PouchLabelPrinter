@@ -112,20 +112,54 @@ return 'defaultRadioValue';
 }
 
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Call the function with the desired number of pages (change the parameter value as needed)
-    // addLabels(2,3630,0);
-    addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+document.addEventListener('DOMContentLoaded', function() {
+addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
 
-    var printButton = document.getElementById('Print');
+var printButton = document.getElementById('Print');
 
-    // Event listener for the "Print" button
+// Event listener for the "Print" button
     printButton.addEventListener('click', function() {
-      // Call the function with the desired number of pages
-      addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
-  
-      // Perform printing action
-      window.print();
+        // Call the function with the desired number of pages
+        addLabels(getInputValue('pages'), getInputValue('KokId'), getSelectedRadioValue('rButtons'));
+
+        // Perform printing action
+        window.print();
     });
-  });
+
+    
+});
   
+document.addEventListener('DOMContentLoaded', function() {
+    var advancedSettingsToggle = document.getElementById('advancedSettingsToggle');
+    var advancedSettingsContent = document.getElementById('advancedSettingsContent');
+
+    advancedSettingsToggle.addEventListener('click', function() {
+        var isOpen = advancedSettingsContent.style.display !== 'none';
+        
+        if (isOpen) {
+            // Close the advanced settings
+            advancedSettingsContent.style.display = 'none';
+            advancedSettingsContent.style.maxHeight = null;
+        } else {
+            // Open the advanced settings
+            advancedSettingsContent.style.display = 'block';
+            advancedSettingsContent.style.maxHeight = advancedSettingsContent.scrollHeight + "px";
+        }
+    });
+
+    // Select all input elements
+    const inputs = document.querySelectorAll('input');
+
+    // Function to call when an input changes
+    const handleInputChange = (event) => {
+        console.log('Input changed:', event.target.value);
+        // Add your handling logic here
+    };
+
+    // Attach the event listener to each input
+    inputs.forEach(input => {
+        input.addEventListener('input', handleInputChange);
+    });
+
+
+});
