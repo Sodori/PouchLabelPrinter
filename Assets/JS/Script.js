@@ -33,6 +33,7 @@ function attachInputEventListeners() {
 }
 
 function addLabels(pages, KokID, Rpos) {
+    console.log(Rpos);
     var labelPagesContainer = document.querySelector('.LabelPages');
     KokID = KokID || "6969"; // Default KokID to "1" if empty
     var Rcycle = [1, 1, 3, 3, 5, 5];
@@ -101,5 +102,5 @@ function getInputValue(inputId) {
 
 function getSelectedRadioValue(radioName) {
     var selectedRadio = document.querySelector(`input[name="${radioName}"]:checked`);
-    return selectedRadio ? selectedRadio.value : '0'; // Adjusted to return value instead of id
+    return selectedRadio ? selectedRadio.id : '0'; // Now returns the id of the selected radio button
 }
